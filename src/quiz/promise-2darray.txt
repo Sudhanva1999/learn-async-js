@@ -1,1 +1,6 @@
 Explain the code execution based on the order of the messages logged in src/quiz/promise-2darray.txt.
+
+- sum2DArray executes and the promise is executed and promise object is returned by the function, the . then part of it is queued in the eventloop. 
+- The promise part has setTimeouts so these setTimeouts are scheduled in the eventLoop's timers phase, they are then executed once the main thread completes execution. 
+- same with the second call of sum2DArray, now just before event loop beings the micro tasks (the then parts ) are executd. the first function call recives correct input and the sum is logged , for the 
+second call the promise throws an error and is rejected which is handeled by the .catch part and error is logged. 
